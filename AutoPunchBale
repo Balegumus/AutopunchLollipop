@@ -1,7 +1,7 @@
 
 -- [[ Library ]] --
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Baledondale/Admin/main/Lollipop"))();
--- [[ Window ]] --
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Example-1811/Test-1/main/Csx%20is%20Skid", true)
+)()
 local Window = Library.new(true)
 Window.ChangeToggleKey(Enum.KeyCode.B)
 
