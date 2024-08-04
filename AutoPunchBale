@@ -1,0 +1,36 @@
+
+-- [[ Library ]] --
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Baledondale/Admin/main/Lollipop"))();
+-- [[ Window ]] --
+local Window = Library.new(true)
+Window.ChangeToggleKey(Enum.KeyCode.B)
+
+-- [[ Catagories ]] --
+UserInterfaceCategories.AutoPunchBale = Window:Category("AutoPunchBale")
+
+-- [[ Catagory: AutoPunchBale ]] --
+local PVPSector = {}
+
+-- Toggle Automatic Punching --
+PVPSector.Autonomous:Toggle("Auto Punch", function(bool)
+	PvpSectionSettings.Bot.AutoPunch = bool
+end)
+
+-- Set Punch Speed --
+PVPSector.Autonomous:Slider(
+	"Punch Speed",
+	{ min = 1, max = 120, suffix = " BaleAutoPunch", precise = true },
+	function(Value)
+		PvpSectionSettings.Bot.AutoPunchSpeed = Value
+	end
+)
+
+	-- Attack Bot --
+	if PvpSectionSettings.Bot.AutoPunch == true then
+		PvpSectionSettings.Bot.AutoPunchCooldown = PvpSectionSettings.Bot.AutoPunchCooldown + 1
+		if PvpSectionSettings.Bot.AutoPunchCooldown > PvpSectionSettings.Bot.AutoPunchSpeed then
+			PvpSectionSettings.Bot.AutoPunchCooldown = 1
+			Remotes.Punch:FireServer(0.4, 0.1, 1)
+		end
+	end
+end)
